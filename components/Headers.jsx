@@ -1,8 +1,14 @@
 import { useMoralis } from "react-moralis"
 import { useEffect } from "react"
 const Headers = () => {
-  const { enableWeb3, account, isWeb3Enabled, Moralis, deactivateWeb3 } =
-    useMoralis()
+  const {
+    enableWeb3,
+    account,
+    isWeb3Enabled,
+    isWeb3EnableLoading,
+    Moralis,
+    deactivateWeb3,
+  } = useMoralis()
   useEffect(() => {
     if (isWeb3Enabled) return
     if (window.localStorage.getItem("connected")) {
@@ -33,6 +39,7 @@ const Headers = () => {
             await enableWeb3()
             window.localStorage.setItem("connected", "injected")
           }}
+          disabled={isWeb3EnableLoading}
         >
           Connect
         </button>
